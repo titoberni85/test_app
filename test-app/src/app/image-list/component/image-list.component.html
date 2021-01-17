@@ -1,0 +1,43 @@
+<div 
+    class="container" 
+    infiniteScroll 
+    [infiniteScrollDistance]="2"  
+    (scrolled)="onScroll()">
+    <h1 style="text-align: center">Listado</h1>
+    <div class="m-4">
+        <form [formGroup]="searchForm" (ngSubmit)="searchItems()" (change)="changeForm()">
+            <div class="mb-2">
+                <strong>Buscar por:</strong>
+                <input class="ml-3" type="radio" value="id" formControlName="searchType"> Id
+                <input class="ml-3" type="radio" value="text" formControlName="searchType"> Texto
+            </div>
+            <div>
+                <input type="text" formControlName="id" *ngIf="f.searchType.value === 'id'"/>
+                <input type="text" formControlName="text" *ngIf="f.searchType.value === 'text'"/>    
+                <button class="btn btn-primary ml-3" type="submit" [disabled]="!f.id.value && !f.text.value">BUSCAR</button>
+            </div>
+        </form>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">TEXT</th>
+          <th scope="col">PHOTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of arrayDataToShow">
+          <td scope="row">{{item.id}}</td>
+          <td scope="row">{{item.text}}</td>
+          <td scope="row">
+            <img [src]="item.photo" [alt]="'Imagen {{item.id}}'">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<button [ngClass]="'no-hidden'"
+*ngIf="showGoUpButton" class="btn btn-dark"
+(click)="scrollTop()">GO UP</button>
