@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
 import { ImageListComponent } from './image-list.component';
-import { Item } from '../interfaces/item';
+
 
 describe('ImageListComponent', () => {
   let component: ImageListComponent;
