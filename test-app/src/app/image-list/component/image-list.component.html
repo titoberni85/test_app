@@ -1,43 +1,55 @@
-<div 
-    class="container" 
-    infiniteScroll 
-    [infiniteScrollDistance]="2"  
-    (scrolled)="onScroll()">
-    <h1 style="text-align: center">Listado</h1>
-    <div class="m-4">
-        <form [formGroup]="searchForm" (ngSubmit)="searchItems()" (change)="changeForm()">
+<div class="container-fluid">
+  <div class="px-lg-5">
+
+    <!-- Título -->
+    <div class="row py-5">
+      <div class="col-lg-12 mx-auto">
+        <div class="text-white p-4 shadow-sm rounded title">
+          <h1 class="display-4">Listado de imágenes</h1>
+          <p class="lead">test-app</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtro de búsqueda -->
+    <div class="row pb-5">
+      <div class="col-lg-12 mx-auto">
+        <div class="p-3 shadow-sm rounded filter">
+          <form [formGroup]="searchForm" (ngSubmit)="searchItems()">
             <div class="mb-2">
-                <strong>Buscar por:</strong>
-                <input class="ml-3" type="radio" value="id" formControlName="searchType"> Id
-                <input class="ml-3" type="radio" value="text" formControlName="searchType"> Texto
+              <strong>Buscar por:</strong>
+              <input class="ml-3" type="radio" value="id" formControlName="searchType" (change)="onChangeSearchType()"> Id
+              <input class="ml-3" type="radio" value="text" formControlName="searchType" (change)="onChangeSearchType()"> Texto
             </div>
             <div>
-                <input type="text" formControlName="id" *ngIf="f.searchType.value === 'id'"/>
-                <input type="text" formControlName="text" *ngIf="f.searchType.value === 'text'"/>    
-                <button class="btn btn-primary ml-3" type="submit" [disabled]="!f.id.value && !f.text.value">BUSCAR</button>
+              <input *ngIf="f.searchType.value === 'id'" type="text" formControlName="id" pattern="[0-9]{4}" title="Sólo números" (keyup)="onChangeSearchTerm()"/>
+              <input *ngIf="f.searchType.value === 'text'"type="text" formControlName="text" pattern="[A-Za-z0-9]" title="Sólo números y/o letras" (keyup)="onChangeSearchTerm()"/>    
+              <button class="btn btn-primary ml-3" type="submit" [disabled]="!f.id.value && !f.text.value">BUSCAR</button>
             </div>
-        </form>
+            <div class="aviso mt-2">
+              <p><span>*</span>Algunos 'items' pueden no tener imagen asociada al no existir la url en <a href="https://picsum.photos" target="_blank">https://picsum.photos</a> con el id indicado.</p>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">TEXT</th>
-          <th scope="col">PHOTO</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of arrayDataToShow">
-          <td scope="row">{{item.id}}</td>
-          <td scope="row">{{item.text}}</td>
-          <td scope="row">
-            <img [src]="item.photo" [alt]="'Imagen {{item.id}}'">
-          </td>
-        </tr>
-      </tbody>
-    </table>
-</div>
 
-<button [ngClass]="'no-hidden'"
-*ngIf="showGoUpButton" class="btn btn-dark"
-(click)="scrollTop()">GO UP</button>
+    <!-- Galería de Imagenes -->
+    <div class="row" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+      <!-- Item -->
+      <div *ngFor="let item of arrayDataToShow; let i = index" class="col-xl-3 col-lg-4 col-md-6 mb-4">
+        <div class="bg-white rounded shadow-sm">
+          <img [src]="item.photo" [alt]="'Imagen no encontrada'" class="img-fluid card-img-top" (error)="updateImageOnError(i)">
+          <div class="p-4">
+            <h5>Imagen {{item.id}}</h5>
+            <p class="small text-muted mb-0">{{item.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boton Ir arriba -->
+    <button *ngIf="showGoUpButton" class="btn btn-dark" [ngClass]="'no-hidden'" (click)="scrollTop()">Ir arriba</button>
+  
+  </div>
+</div>

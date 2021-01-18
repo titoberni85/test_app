@@ -32,8 +32,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/bootstrap.min.css",
-              "src/bootstrap-grid.min.css"
+              "src/styles/bootstrap.min.css",
+              "src/styles/bootstrap-grid.min.css"
             ],
             "scripts": []
           },

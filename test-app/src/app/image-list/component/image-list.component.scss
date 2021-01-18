@@ -1,6 +1,24 @@
-.no-hidden{
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    visibility: visible;
+.title {
+  background: #6a4af7;
+  background: linear-gradient(to right, #6a4af7, #61d0ec, #65b46c);
+  background: -webkit-linear-gradient(to right, #6a4af7, #61d0ec, #65b46c);
+}
+
+.filter {
+  background: #f6f5f8;
+  .aviso {
+    font-style: italic;
+    font-size: 12px;
+    span {
+      margin-right: 4px;
+      color: red;
+    }
   }
+}
+
+.no-hidden{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  visibility: visible;
+}
