@@ -1,0 +1,11 @@
+.filter {
+    background: #f6f5f8;
+    .aviso {
+        font-style: italic;
+        font-size: 12px;
+        span {
+            margin-right: 4px;
+            color: red;
+        }
+    }
+}

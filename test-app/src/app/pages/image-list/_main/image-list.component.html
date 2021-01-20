@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="px-lg-5">
+
+    <div class="row py-5">
+      <div class="col-lg-12 mx-auto">
+        <div class="text-white p-4 shadow-sm rounded title">
+          <h1 class="display-4">{{ literals.MAIN.TITLE }}</h1>
+        </div>
+      </div>
+    </div>
+
+    <app-filter *ngIf="imageList.length" #listFilter [imageList]="imageList" (filterEvent)="setFilteredList($event)"></app-filter>
+    <app-list [imageList]="imageListFiltered" [searchTerm]="searchTerm"></app-list>
+  </div>
+</div>
