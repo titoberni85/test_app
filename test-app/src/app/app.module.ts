@@ -4,13 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SharedModule } from './_shared/shared.module';
 import { AppComponent } from './app.component';
-import { ImageListComponent } from './image-list/component/image-list.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ImageListComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
