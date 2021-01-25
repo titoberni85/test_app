@@ -49,10 +49,11 @@ describe('ListComponent', () => {
   });
 
   it('should go to top on window', () => {
+    document.body.scrollTop = 800;
     document.documentElement.scrollTop = 800;
-    expect(document.documentElement.scrollTop).toBe(800);
+    expect(document.body.scrollTop | document.documentElement.scrollTop).toBe(800);
     component.scrollTop();
-    expect(document.documentElement.scrollTop).toBe(0);
+    expect(document.body.scrollTop | document.documentElement.scrollTop).toBe(0);
   });
 
 });

@@ -58,7 +58,8 @@ export class ListComponent implements OnChanges {
   }
 
   scrollTop(): void {
-    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0; // Safari
+    document.documentElement.scrollTop = 0; // Others
   }
 
   private getNextItems(): void {
