@@ -1,4 +1,4 @@
-import { Directive, Input, SimpleChanges, Renderer2, ElementRef } from '@angular/core';
+import { Directive, Input, Renderer2, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]'
@@ -12,7 +12,7 @@ export class HighlightDirective {
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (!this.searchedWord || !this.searchedWord.length || !this.classToApply) {
       this.renderer.setProperty(this.el.nativeElement, 'innerHTML', this.text);
       return;

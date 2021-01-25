@@ -7,7 +7,7 @@ import { throwError} from 'rxjs';
 })
 export class ErrorHandlerService {
 
-  public handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
@@ -15,8 +15,7 @@ export class ErrorHandlerService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError('Something bad happened; please try again later.');
   }
-
+  
 }

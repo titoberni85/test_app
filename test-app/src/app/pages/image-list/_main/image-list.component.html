@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <app-filter *ngIf="imageList.length" #listFilter [imageList]="imageList" (filterEvent)="setFilteredList($event)"></app-filter>
-    <app-list [imageList]="imageListFiltered" [searchTerm]="searchTerm"></app-list>
+    <app-filter *ngIf="imageList.length" #filter [imageList]="imageList" (filterEvent)="setFilteredList($event)"></app-filter>
+    <app-list [imageList]="imageListFiltered" #list [searchTerm]="searchTerm"></app-list>
   </div>
 </div>

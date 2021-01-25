@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImageListService } from '../services/image-list.service';
 import { FilterComponent } from '../components/filter/filter.component';
+import { ListComponent } from '../components/list/list.component';
 import { ImageItem } from '../interfaces/image-item';
 import { IMAGELIST_LITERALS } from '../constants/constants';
 
@@ -18,7 +19,8 @@ export class ImageListComponent implements OnInit {
   public imageListFiltered: ImageItem[] = [];
   public searchTerm: string = '';
   
-  @ViewChild('listFilter') listFilter!: FilterComponent;
+  @ViewChild('filter') filter!: FilterComponent;
+  @ViewChild('list') list!: ListComponent;
   
   constructor(private service: ImageListService) { }
 
@@ -29,7 +31,7 @@ export class ImageListComponent implements OnInit {
 
   setFilteredList(imageListFiltered: ImageItem[]): void {
     this.imageListFiltered = imageListFiltered;
-    this.searchTerm = this.listFilter.form.text.value;
+    this.searchTerm = this.filter.form.text.value;
   }
 
   private getItemsList(): void {

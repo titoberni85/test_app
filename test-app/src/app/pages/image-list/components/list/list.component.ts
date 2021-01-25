@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, HostListener, Input, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, OnChanges, HostListener, Input, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { ImageListService } from '../../services/image-list.service';
 import { ImageItem } from '../../interfaces/image-item';
 import { IMAGELIST_LITERALS } from '../../constants/constants';
@@ -87,7 +87,6 @@ export class ListComponent implements OnChanges {
     if (image) {
       reader.readAsDataURL(image);
     }
-    // item.image = URL.createObjectURL(image)
   }
 
   private updateImageOnError(item: ImageItem): void {

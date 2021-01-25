@@ -68,7 +68,7 @@ export class FilterComponent implements OnInit {
 
   private searchByText(): void {
     this.imageListFiltered = this.imageList.filter((image) => {
-      return image.text.indexOf(this.form.text.value) !== -1;
+      return image.text.toLowerCase().indexOf(this.form.text.value.toLowerCase()) !== -1;
     });
     this.filterEvent.emit(this.imageListFiltered);
   }
